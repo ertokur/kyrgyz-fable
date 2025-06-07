@@ -1,10 +1,10 @@
 ﻿// Erbol Tokur
 
 
-#include "KyrgyzFable/Public/Core/KFGameModeBase.h"
+#include "KyrgyzFable/Core/KFGameModeBase.h"
 
-#include "KyrgyzFable/Public/Core/KFPlayerCharacterBase.h"
-#include "KyrgyzFable/Public/Core/KFPlayerControllerBase.h"
+#include "KyrgyzFable/Core/KFPlayerCharacterBase.h"
+#include "KyrgyzFable/Core/KFPlayerControllerBase.h"
 
 AKFGameModeBase::AKFGameModeBase()
 {
