@@ -17,7 +17,7 @@ public:
 
 	//COMPONENTS
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = MissionStep)
-	UBillboardComponent* Billboard;
+	UBillboardComponent* Billboard = nullptr;
 	////////////
 	
 	//DELEGATES

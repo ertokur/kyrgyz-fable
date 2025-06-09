@@ -16,7 +16,7 @@ public:
 
 	//COMPONENTS
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = MissionStep)
-	UStaticMeshComponent* TriggerMesh;
+	UStaticMeshComponent* TriggerMesh = nullptr;
 	////////////
 
 	//OVERRIDES
