@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "KyrgyzFable/UI/PauseMenu.h"
 #include "KFPlayerCharacterBase.generated.h"
 
 UCLASS()
@@ -36,9 +37,19 @@ protected:
 	void TurnAtRate(float Rate);
 	
 	void LookUpAtRate(float Rate);
+
+	UFUNCTION()
+	void TogglePause();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TSubclassOf<UPauseMenu> PauseMenuClass = nullptr;
 	
 public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+private:
+	UPROPERTY()
+	UPauseMenu* PauseMenu = nullptr;
 };

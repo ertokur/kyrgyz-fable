@@ -6,6 +6,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 AKFPlayerCharacterBase::AKFPlayerCharacterBase()
 {
@@ -50,6 +51,7 @@ void AKFPlayerCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerIn
 	PlayerInputComponent->BindAxis("TurnRate", this, &AKFPlayerCharacterBase::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AKFPlayerCharacterBase::LookUpAtRate);
+	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &AKFPlayerCharacterBase::TogglePause).bExecuteWhenPaused = true;
 }
 
 void AKFPlayerCharacterBase::TurnAtRate(float Rate)
@@ -60,6 +62,39 @@ void AKFPlayerCharacterBase::TurnAtRate(float Rate)
 void AKFPlayerCharacterBase::LookUpAtRate(float Rate)
 {
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
+}
+
+void AKFPlayerCharacterBase::TogglePause()
+{
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		if (PauseMenu)
+		{
+			UGameplayStatics::SetGamePaused(GetWorld(), false);
+			PauseMenu->RemoveFromParent();
+			PauseMenu = nullptr;
+			PC->SetInputMode(FInputModeGameOnly());
+			PC->SetShowMouseCursor(false);
+		}
+		else
+		{
+			UGameplayStatics::SetGamePaused(GetWorld(), true);
+			
+			if (PauseMenuClass)
+			{
+				PauseMenu = Cast<UPauseMenu>(CreateWidget(PC, PauseMenuClass));
+
+				if (PauseMenu)
+				{
+					PauseMenu->AddToViewport();
+					PauseMenu->OnPauseExit.AddDynamic(this, &AKFPlayerCharacterBase::TogglePause);
+				}
+			}
+			
+			PC->FlushPressedKeys();
+			PC->SetShowMouseCursor(true);
+		}
+	}
 }
 
 void AKFPlayerCharacterBase::MoveForward(float Value)
