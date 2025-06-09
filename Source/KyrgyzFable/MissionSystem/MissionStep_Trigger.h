@@ -14,13 +14,24 @@ class KYRGYZFABLE_API AMissionStep_Trigger : public AMissionStep_Base
 public:
 	AMissionStep_Trigger();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Components)
-	class UStaticMeshComponent* TriggerMesh;
-	
+	//COMPONENTS
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = MissionStep)
+	UStaticMeshComponent* TriggerMesh;
+	////////////
+
+	//OVERRIDES
+	virtual void Activate() override;
+
+	virtual void Deactivate() override;
+	///////////
 protected:
+	//OVERRIDES
 	virtual void BeginPlay() override;
+	///////////
 
 private:
+	//FUNCTIONS
 	UFUNCTION()
 	void OnTriggered(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
+	///////////
 };
