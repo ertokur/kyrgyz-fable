@@ -25,27 +25,27 @@ void AMissionStep_Dialog::Activate()
 {
 	Super::Activate();
 
-	if (APlayerController* PlayerController = GetWorld()->GetFirstPlayerController())
+	if (APlayerController* PC = GetWorld()->GetFirstPlayerController())
 	{
-		PlayerController->SetViewTargetWithBlend(this, BlendTime);
+		PC->SetViewTargetWithBlend(this, BlendTime);
 
 		if (DialogScreenWidgetClass)
 		{
-			DialogScreen = Cast<UDialogScreen>(CreateWidget(PlayerController, DialogScreenWidgetClass));
+			DialogScreen = Cast<UDialogScreen>(CreateWidget(PC, DialogScreenWidgetClass));
 
 			if (DialogScreen)
 			{
 				DialogScreen->DialogDataTable = DialogDataTable;
 				DialogScreen->AddToViewport();
 
-				if (ACharacter* Character = Cast<ACharacter>(PlayerController->GetPawn()))
+				if (ACharacter* Character = Cast<ACharacter>(PC->GetPawn()))
 				{
 					Character->GetCharacterMovement()->StopMovementImmediately();
 				}
 
-				PlayerController->FlushPressedKeys();
-				PlayerController->SetInputMode(FInputModeUIOnly());
-				PlayerController->SetShowMouseCursor(true);
+				PC->FlushPressedKeys();
+				PC->SetInputMode(FInputModeUIOnly());
+				PC->SetShowMouseCursor(true);
 				DialogScreen->OnDialogCompleted.AddDynamic(this, &AMissionStep_Base::CompleteStep);
 			}
 		}
