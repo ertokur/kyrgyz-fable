@@ -10,6 +10,7 @@
 AMissionStep_Dialog::AMissionStep_Dialog()
 {
 	PartnerMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("PartnerMesh"));
+	PartnerMesh->SetCollisionResponseToAllChannels(ECR_Block);
 	PartnerMesh->SetupAttachment(RootComponent);
 
 	DialogCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("DialogCamera"));
