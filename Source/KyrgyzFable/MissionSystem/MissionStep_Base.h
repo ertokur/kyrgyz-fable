@@ -32,10 +32,13 @@ public:
 	UFUNCTION(BlueprintPure, Category = MissionStep)
 	FORCEINLINE EMissionStepState GetState() const { return State; }
 
+	UFUNCTION()
 	virtual void Activate();
 
+	UFUNCTION()
 	virtual void CompleteStep();
 
+	UFUNCTION()
 	virtual void Deactivate();
 	///////////
 

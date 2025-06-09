@@ -59,18 +59,6 @@ struct FLocalizationTableRow : public FTableRowBase
 	FLocalization Localization;
 };
 
-USTRUCT(BlueprintType)
-struct FDialogTableRow : public FTableRowBase
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FLocalization Localization;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USoundBase* Sound = nullptr;
-};
-
 //DELEGATES
 ///////////
 
