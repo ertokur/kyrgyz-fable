@@ -8,7 +8,8 @@ public class KyrgyzFableEditorTarget : TargetRules
 	public KyrgyzFableEditorTarget( TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "KyrgyzFable" } );
+		DefaultBuildSettings = BuildSettingsVersion.V5;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_4;
+		ExtraModuleNames.Add("KyrgyzFable");
 	}
 }

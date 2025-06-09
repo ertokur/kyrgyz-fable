@@ -2,7 +2,7 @@
 
 
 #include "KyrgyzFable/Core/KFGameInstanceBase.h"
-
+#include "Blueprint/UserWidget.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "KyrgyzFable/UI/Localizable.h"
 
