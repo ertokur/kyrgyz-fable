@@ -10,6 +10,7 @@ DEFINE_LOG_CATEGORY(LogMission);
 AMissionStep_Base::AMissionStep_Base()
 {
 	PrimaryActorTick.bCanEverTick = false;
+	RootComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("RootComponent"));
 	TextRender = CreateDefaultSubobject<UTextRenderComponent>(TEXT("TextRender"));
 	TextRender->SetupAttachment(RootComponent);
 }
@@ -18,7 +19,7 @@ void AMissionStep_Base::BeginPlay()
 {
 	Super::BeginPlay();
 	Deactivate();
-		
+	
 #ifdef UE_BUILD_SHIPPING
 	TextRender->DestroyComponent();
 #endif

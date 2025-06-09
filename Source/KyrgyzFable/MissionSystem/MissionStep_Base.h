@@ -8,7 +8,7 @@
 #include "MissionStep_Base.generated.h"
 
 
-UCLASS(NotPlaceable)
+UCLASS(Abstract)
 class KYRGYZFABLE_API AMissionStep_Base : public AActor
 {
 	GENERATED_BODY()

@@ -7,7 +7,7 @@
 AMissionStep_Trigger::AMissionStep_Trigger()
 {
 	TriggerMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TriggerMesh"));
-	SetRootComponent(TriggerMesh);
+	TriggerMesh->SetupAttachment(RootComponent);
 	TriggerMesh->SetCollisionResponseToAllChannels(ECR_Overlap);
 	TriggerMesh->OnComponentBeginOverlap.AddDynamic(this, &AMissionStep_Trigger::OnTriggered);
 }

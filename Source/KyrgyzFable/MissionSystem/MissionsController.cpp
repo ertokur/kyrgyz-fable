@@ -36,8 +36,9 @@ void AMissionsController::BeginPlay()
 	}
 
 	//TODO: add load from save
-	
-	StartNextMission();
+
+	FTimerHandle TimerHandle;
+	GetWorldTimerManager().SetTimer(TimerHandle, this, &AMissionsController::StartNextMission, .1f, false);
 }
 
 void AMissionsController::StartNextMission()
