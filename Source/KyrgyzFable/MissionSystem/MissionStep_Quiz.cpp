@@ -44,7 +44,7 @@ void AMissionStep_Quiz::Deactivate()
 
 	if (QuizScreen)
 	{
-		QuizScreen->RemoveFromViewport();
+		QuizScreen->RemoveFromParent();
 		QuizScreen = nullptr;
 
 		if (APlayerController* PlayerController = GetWorld()->GetFirstPlayerController())

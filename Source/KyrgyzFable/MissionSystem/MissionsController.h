@@ -15,11 +15,6 @@ class KYRGYZFABLE_API AMissionsController : public AActor
 public:
 	AMissionsController();
 
-	//COMPONENTS
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = MissionStep)
-	UBillboardComponent* Billboard = nullptr;
-	////////////
-	
 	//DELEGATES
 	UPROPERTY(BlueprintAssignable, Category = MissionStep)
 	FMissionEventSignature OnAllMissionsCompleted;

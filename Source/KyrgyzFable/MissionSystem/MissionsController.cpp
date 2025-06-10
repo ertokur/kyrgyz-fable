@@ -10,8 +10,7 @@
 AMissionsController::AMissionsController()
 {
 	PrimaryActorTick.bCanEverTick = false;
-	Billboard = CreateDefaultSubobject<UBillboardComponent>(TEXT("Billboard"));
-	SetRootComponent(Billboard);
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 }
 
 void AMissionsController::BeginPlay()
