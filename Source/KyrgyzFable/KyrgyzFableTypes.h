@@ -51,6 +51,18 @@ struct FLocalization
 };
 
 USTRUCT(BlueprintType)
+struct FQuizCard
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FLocalization Localization;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bIsCorrect = false;
+};
+
+USTRUCT(BlueprintType)
 struct FLocalizationTableRow : public FTableRowBase
 {
 	GENERATED_BODY()
@@ -59,17 +71,14 @@ struct FLocalizationTableRow : public FTableRowBase
 	FLocalization Localization;
 };
 
-//DELEGATES
-///////////
+USTRUCT(BlueprintType)
+struct FQuizColorsTableRow : public FTableRowBase
+{
+	GENERATED_BODY()
 
-//PROPERTIES
-////////////
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FLinearColor Color;
 
-//COMPONENTS
-////////////
-
-//OVERRIDES
-///////////
-
-//FUNCTIONS
-///////////
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FQuizCard> QuizCards;
+};
