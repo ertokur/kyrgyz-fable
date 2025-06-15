@@ -31,11 +31,8 @@ protected:
 	virtual void BeginPlay() override;
 
 	void MoveForward(float Value);
-
 	void MoveRight(float Value);
-
 	void TurnAtRate(float Rate);
-	
 	void LookUpAtRate(float Rate);
 
 	UFUNCTION()

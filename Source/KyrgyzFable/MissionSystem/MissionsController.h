@@ -15,30 +15,21 @@ class KYRGYZFABLE_API AMissionsController : public AActor
 public:
 	AMissionsController();
 
-	//DELEGATES
 	UPROPERTY(BlueprintAssignable, Category = MissionStep)
 	FMissionEventSignature OnAllMissionsCompleted;
-	///////////
 	
-	//PROPERTIES
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Default|Settings")
 	TMap<FName, FMissionSteps> MissionsList;
-	////////////
 
 protected:
-	//OVERRIDES
 	virtual void BeginPlay() override;
-	///////////
-	
-	//FUNCTIONS
+
 	UFUNCTION()
 	virtual void StartNextMission();
 	
 	virtual class AMission* CreateMission(FName MissionID);
-	///////////
 
 private:
-	//PROPERTIES
 	UPROPERTY()
 	TArray<class AMissionStep_Base*> MissionStepActors;
 
@@ -48,11 +39,8 @@ private:
 	int32 CurrentMissionIndex = 0;
 
 	TArray<FName> CompletedMissions;
-	////////////
 
-	//FUNCTIONS
 	bool IsMissionStepInList(const AMissionStep_Base* MissionStep) const;
 
 	FName GetMissionIDByIndex(const int32 Index) const;
-	///////////
 };

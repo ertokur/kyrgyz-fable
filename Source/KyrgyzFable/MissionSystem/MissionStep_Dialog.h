@@ -13,31 +13,22 @@ class KYRGYZFABLE_API AMissionStep_Dialog : public AMissionStep_Base
 	GENERATED_BODY()
 
 public:
-	//COMPONENTS
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = MissionStep)
 	USkeletalMeshComponent* PartnerMesh = nullptr;
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = MissionStep)
 	class UCameraComponent* DialogCamera = nullptr;
-	////////////
 
-	//OVERRIDES
 	virtual void Activate() override;
 	
 	virtual void Deactivate() override;
-	///////////
-	
-	//FUNCTIONS
+
 	AMissionStep_Dialog();
-	///////////
 
 protected:
-	//OVERRIDES
 	virtual void BeginPlay() override;
-	///////////
 
 private:
-	//PROPERTIES
 	UPROPERTY(EditInstanceOnly, Category = "Default|Settings")
 	UDataTable* DialogDataTable = nullptr;
 
@@ -49,5 +40,4 @@ private:
 	
 	UPROPERTY()
 	UDialogScreen* DialogScreen = nullptr;
-	////////////
 };

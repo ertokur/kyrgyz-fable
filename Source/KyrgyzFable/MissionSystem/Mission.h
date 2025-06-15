@@ -17,12 +17,9 @@ class KYRGYZFABLE_API AMission : public AActor
 public:
 	AMission();
 
-	//DELEGATES
 	UPROPERTY(BlueprintAssignable, Category = MissionStep)
 	FMissionEventSignature OnMissionCompleted;
-	///////////
-	
-	//FUNCTIONS
+
 	UFUNCTION(BlueprintPure, Category = MissionStep)
 	FORCEINLINE FName GetMissionID() const { return MissionID; }
 
@@ -30,15 +27,11 @@ public:
 	virtual void StartMission();
 
 	virtual void CompleteMission();
-	///////////
 	
 protected:
-	//OVERRIDES
 	virtual void BeginPlay() override;
-	///////////
 
 private:
-	//PROPERTIES
 	FName MissionID;
 
 	UPROPERTY()
@@ -51,10 +44,5 @@ private:
 	UPROPERTY()
 	AMissionStep_Base* CurrentStep = nullptr;
 
-	
-	////////////
-
-	//FUNCTIONS
 	AMissionStep_Base* GetMissionStepByIndex(const int32 Index);
-	///////////
 };
