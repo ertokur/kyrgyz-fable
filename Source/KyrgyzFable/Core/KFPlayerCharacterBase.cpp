@@ -7,6 +7,8 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "KyrgyzFable/Save/PlayerProgress.h"
+#include "KyrgyzFable/Save/SaveSubsystem.h"
 
 AKFPlayerCharacterBase::AKFPlayerCharacterBase()
 {
@@ -33,7 +35,15 @@ AKFPlayerCharacterBase::AKFPlayerCharacterBase()
 void AKFPlayerCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (USaveSubsystem* SaveSubsystem = GetGameInstance()->GetSubsystem<USaveSubsystem>())
+	{
+		if (UPlayerProgress* PlayerProgress = SaveSubsystem->GetPlayerProgress())
+		{
+			SetActorLocation(PlayerProgress->PlayerLocation);
+			SetActorRotation(PlayerProgress->PlayerRotation);
+		}
+	}
 }
 
 void AKFPlayerCharacterBase::Tick(float DeltaTime)
