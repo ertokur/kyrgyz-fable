@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "MissionStep_Base.h"
 #include "KyrgyzFable/KyrgyzFableTypes.h"
 #include "Mission.generated.h"
 
@@ -27,6 +28,8 @@ public:
 	virtual void StartMission();
 
 	virtual void CompleteMission();
+
+	virtual TArray<FQuizCollectableData> GetQuizCollectableData() const;
 	
 protected:
 	virtual void BeginPlay() override;
@@ -35,7 +38,7 @@ private:
 	FName MissionID;
 
 	UPROPERTY()
-	TArray<class AMissionStep_Base*> MissionStepActors;
+	TArray<AMissionStep_Base*> MissionStepActors;
 
 	FMissionSteps MissionSteps;
 

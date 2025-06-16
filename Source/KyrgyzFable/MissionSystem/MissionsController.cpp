@@ -6,6 +6,8 @@
 #include "MissionStep_Base.h"
 #include "Mission.h"
 #include "Components/BillboardComponent.h"
+#include "KyrgyzFable/Save/PlayerProgress.h"
+#include "KyrgyzFable/Save/SaveSubsystem.h"
 
 AMissionsController::AMissionsController()
 {
@@ -34,7 +36,13 @@ void AMissionsController::BeginPlay()
 		}
 	}
 
-	//TODO: add load from save
+	if (USaveSubsystem* SaveSubsystem = GetGameInstance()->GetSubsystem<USaveSubsystem>())
+	{
+		if (UPlayerProgress* PlayerProgress = SaveSubsystem->GetPlayerProgress())
+		{
+			CurrentMissionIndex = PlayerProgress->LastCompletedMissionIndex;
+		}
+	}
 
 	FTimerHandle TimerHandle;
 	GetWorldTimerManager().SetTimer(TimerHandle, this, &AMissionsController::StartNextMission, .1f, false);
@@ -48,10 +56,14 @@ void AMissionsController::StartNextMission()
 	if (CurrentMission)
 	{
 		CurrentMissionIndex++;
+		
+		if (USaveSubsystem* SaveSubsystem = GetGameInstance()->GetSubsystem<USaveSubsystem>())
+		{
+			SaveSubsystem->SaveProgress(this);
+		}
+
 		CurrentMission->Destroy();
 		CurrentMission = nullptr;
-
-		//TODO: save progress
 	}
 
 	FName NewMissionID = GetMissionIDByIndex(CurrentMissionIndex);

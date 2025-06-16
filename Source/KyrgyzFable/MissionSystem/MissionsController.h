@@ -15,12 +15,18 @@ class KYRGYZFABLE_API AMissionsController : public AActor
 public:
 	AMissionsController();
 
-	UPROPERTY(BlueprintAssignable, Category = MissionStep)
+	UPROPERTY(BlueprintAssignable)
 	FMissionEventSignature OnAllMissionsCompleted;
 	
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Default|Settings")
 	TMap<FName, FMissionSteps> MissionsList;
 
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE int32 GetCurrentMissionIndex() const { return CurrentMissionIndex; }
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE AMission* GetCurrentMission() const { return CurrentMission; }
+	
 protected:
 	virtual void BeginPlay() override;
 

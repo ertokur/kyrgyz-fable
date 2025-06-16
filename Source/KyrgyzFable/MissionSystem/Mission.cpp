@@ -1,7 +1,7 @@
 ﻿// Erbol Tokur
 
 #include "Mission.h"
-#include "MissionStep_Base.h"
+#include "MissionStep_Quiz.h"
 
 AMission::AMission()
 {
@@ -42,6 +42,24 @@ void AMission::StartMission()
 void AMission::CompleteMission()
 {
 	
+}
+
+TArray<FQuizCollectableData> AMission::GetQuizCollectableData() const
+{
+	TArray<FQuizCollectableData> OutData;
+
+	for (const auto Iter : MissionStepActors)
+	{
+		if (AMissionStep_Quiz* Quiz = Cast<AMissionStep_Quiz>(Iter))
+		{
+			if (Quiz->CanCollectData())
+			{
+				OutData.Add(Quiz->CollectData());
+			}
+		}
+	}
+
+	return OutData;
 }
 
 AMissionStep_Base* AMission::GetMissionStepByIndex(const int32 Index)
