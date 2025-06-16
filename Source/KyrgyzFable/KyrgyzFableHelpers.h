@@ -14,6 +14,8 @@ class KYRGYZFABLE_API UKyrgyzFableHelpers : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 
+public:
+	
 	UFUNCTION(BlueprintCallable, Category = KyrgyzFableHelpers)
 	static FText GetLocalizationByKey(const UObject* WorldContext, const UDataTable* DataTable, const FName Key);
 
