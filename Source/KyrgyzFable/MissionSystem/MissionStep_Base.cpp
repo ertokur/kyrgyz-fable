@@ -9,7 +9,8 @@ DEFINE_LOG_CATEGORY(LogMission);
 
 AMissionStep_Base::AMissionStep_Base()
 {
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bStartWithTickEnabled = false;
 	RootComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("RootComponent"));
 	TextRender = CreateDefaultSubobject<UTextRenderComponent>(TEXT("TextRender"));
 	TextRender->SetupAttachment(RootComponent);
