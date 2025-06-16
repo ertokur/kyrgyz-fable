@@ -102,6 +102,7 @@ void AKFPlayerCharacterBase::TogglePause()
 			}
 			
 			PC->FlushPressedKeys();
+			PC->SetInputMode(FInputModeGameAndUI());
 			PC->SetShowMouseCursor(true);
 		}
 	}
