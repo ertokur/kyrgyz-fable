@@ -9,6 +9,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FMissionEventSignature);
 
 DECLARE_LOG_CATEGORY_EXTERN(LogMission, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogKF,		Log, All);
 
 UENUM(BlueprintType)
 enum class EMissionStepState : uint8
@@ -51,7 +52,28 @@ struct FLocalization
 };
 
 USTRUCT(BlueprintType)
-struct FQuizCard
+struct FLocalizationTableRow : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FLocalization Localization;
+};
+
+USTRUCT(BlueprintType)
+struct FDialogTableRow : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FLocalization Localization;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* DialogSound = nullptr;
+};
+
+USTRUCT(BlueprintType)
+struct FQuizColorsCard
 {
 	GENERATED_BODY()
 
@@ -63,15 +85,6 @@ struct FQuizCard
 };
 
 USTRUCT(BlueprintType)
-struct FLocalizationTableRow : public FTableRowBase
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FLocalization Localization;
-};
-
-USTRUCT(BlueprintType)
 struct FQuizColorsTableRow : public FTableRowBase
 {
 	GENERATED_BODY()
@@ -80,5 +93,50 @@ struct FQuizColorsTableRow : public FTableRowBase
 	FLinearColor Color;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FQuizCard> QuizCards;
+	TArray<FQuizColorsCard> QuizCards;
+};
+
+USTRUCT(BlueprintType)
+struct FQuizWordsCard
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText Word;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* Sound = nullptr;
+};
+
+USTRUCT(BlueprintType)
+struct FQuizWordsTableRow : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FLocalization OriginalWord;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FQuizWordsCard> QuizCards;
+};
+
+USTRUCT(BlueprintType)
+struct FQuizCollectableData
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FLocalization QuizName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FDateTime CompleteDate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float SolutionTime = 0.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 CorrectAnswers = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 TotalAnswers = 0;
 };
