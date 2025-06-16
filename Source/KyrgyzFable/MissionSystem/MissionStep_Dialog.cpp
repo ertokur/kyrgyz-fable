@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
 
 AMissionStep_Dialog::AMissionStep_Dialog()
 {
@@ -38,10 +39,16 @@ void AMissionStep_Dialog::Activate()
 			{
 				DialogScreen->DialogDataTable = DialogDataTable;
 				DialogScreen->AddToViewport();
-
+				
 				if (ACharacter* Character = Cast<ACharacter>(PC->GetPawn()))
 				{
 					Character->GetCharacterMovement()->StopMovementImmediately();
+	
+					if (bRotateToPartner)
+					{
+						FRotator ResultRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), PartnerMesh->GetComponentLocation());
+						Character->SetActorRotation(ResultRotation);
+					}
 				}
 
 				PC->FlushPressedKeys();

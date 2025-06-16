@@ -37,6 +37,9 @@ private:
 
 	UPROPERTY(EditInstanceOnly, Category = "Default|Settings")
 	float BlendTime = .5f;
+
+	UPROPERTY(EditInstanceOnly, Category = "Default|Settings")
+	bool bRotateToPartner = true;
 	
 	UPROPERTY()
 	UDialogScreen* DialogScreen = nullptr;
