@@ -19,7 +19,7 @@ public:
 	virtual void CompleteStep() override;
 
 	UFUNCTION(BlueprintPure)
-	FORCEINLINE bool CanCollectData() const { return bCollectData; }
+	FORCEINLINE bool CanCollectData() const { return bCollectData && GetState() == EMissionStepState::MSS_Completed; }
 
 	UFUNCTION(BlueprintCallable)
 	FQuizCollectableData CollectData() const;
