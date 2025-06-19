@@ -102,10 +102,10 @@ struct FQuizWordsCard
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FText Word;
+	USoundBase* Sound = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USoundBase* Sound = nullptr;
+	bool bIsCorrect = false;
 };
 
 USTRUCT(BlueprintType)
