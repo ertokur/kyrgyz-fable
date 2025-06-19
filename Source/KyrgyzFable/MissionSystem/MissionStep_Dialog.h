@@ -29,7 +29,7 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY(EditInstanceOnly, Category = "Default|Settings")
+	UPROPERTY(EditInstanceOnly, Category = "Default|Settings", meta = (RequiredAssetDataTags  = "RowStructure=/Script/KyrgyzFable.DialogTableRow"))
 	UDataTable* DialogDataTable = nullptr;
 
 	UPROPERTY(EditInstanceOnly, Category = "Default|Settings")
