@@ -35,7 +35,7 @@ protected:
 	void TurnAtRate(float Rate);
 	void LookUpAtRate(float Rate);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void TogglePause();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
