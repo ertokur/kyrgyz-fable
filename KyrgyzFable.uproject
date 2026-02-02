@@ -62,5 +62,9 @@
 				"Linux"
 			]
 		}
+	],
+	"TargetPlatforms": [
+		"Android",
+		"Windows"
 	]
 }
